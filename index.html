@@ -2,19 +2,18 @@
 <script>
 var c = document.getElementById('c').getContext('2d');
 var canvas = document.getElementById('c');
-
 canvas.style.border = "red 1px solid";
 
 var maze = new Image();
 maze.src = "tiny.png";
 
-maze.onload = function() {
+maze.onload = function() {          // Needed to load PNG
     c.drawImage(maze,0,0);
     
     var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
     var line = "";
     for (var i=0; i < imageData.length/4; i++) {
-        line += imageData[i*4];     // Red
+        line += imageData[i*4];     // Red Pixels Only as White is RGB 255255255
         if (i % 10 == 9)  
         {
             console.log(line);
