@@ -1,15 +1,13 @@
 <canvas id='c' width=10 height=10></canvas>
 <script>
 var c = document.getElementById('c').getContext('2d');
-var canvas = document.getElementById('c');
-canvas.style.border = "red 1px solid";
 
 var maze = new Image();
 maze.src = "tiny.png";
 
 maze.onload = function() {          // Needed to load PNG
     c.drawImage(maze,0,0);
-    
+
     var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
     var line = "";
     for (var i=0; i < imageData.length/4; i++) {
@@ -22,5 +20,4 @@ maze.onload = function() {          // Needed to load PNG
     }
 };
 
-//https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
 </script>
