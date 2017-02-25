@@ -1,0 +1,17 @@
+<canvas id='c'></canvas>
+<script>
+var c = document.getElementById('c').getContext('2d');
+
+var maze = new Image();
+maze.src = "tiny.png";
+
+c.scale(15,15);   // zoom 15x
+
+maze.onload = function() {
+   c.drawImage(maze,0,0);
+};
+
+console.log(c.getImageData(0,0,maze.width,maze.height).data.length)
+
+//https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
+</script>
