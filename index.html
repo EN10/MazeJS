@@ -1,17 +1,16 @@
 <canvas id='c'></canvas>
 <script>
-var c = document.getElementById('c').getContext('2d');
+var canvas = document.getElementById('c');
+var c = canvas.getContext('2d');
 
 var maze = new Image();
 maze.src = "tiny.png";
 
-var canvas = document.getElementById('c');
-var zoom = window.innerHeight * 0.9 / maze.height;    // 0.9 as browser has a header 
-canvas.width  = maze.width * zoom;
-canvas.height  = maze.height * zoom;
-c.scale(zoom,zoom);
-
 maze.onload = function() {          // Needed to load PNG
+    var zoom = window.innerHeight * 0.9 / maze.height;    // 0.9 as browser has a header 
+    canvas.width  = maze.width * zoom;
+    canvas.height  = maze.height * zoom;
+    c.scale(zoom,zoom);
     c.drawImage(maze,0,0);
 
     var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
