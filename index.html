@@ -13,7 +13,11 @@ maze.onload = function() {          // Needed to load PNG
     c.scale(zoom,zoom);
     c.drawImage(maze,0,0);
 
-    var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
+    pixels2Console();
+};
+
+function pixels2Console(){
+        var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
     var line = "";
     for (var i=0; i < imageData.length/4; i++) {
         line += imageData[i*4];     // Red Pixels Only as White is RGB 255255255
@@ -23,6 +27,6 @@ maze.onload = function() {          // Needed to load PNG
             line = "";
         }
     }
-};
+}
 
 </script>
