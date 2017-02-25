@@ -5,23 +5,47 @@ var c = canvas.getContext('2d');
 
 var maze = new Image();
 maze.src = "tiny.png";
+var array = [];
+var size;
 
-maze.onload = function() {          // Needed to load PNG
-    var zoom = window.innerHeight * 0.9 / maze.height;    // 0.9 as browser has a header 
+maze.onload = function() {              // Needed to load PNG
+    var zoom = window.innerHeight * 0.9 / maze.height;      // 0.9 as browser has a header 
     canvas.width  = maze.width * zoom;
     canvas.height  = maze.height * zoom;
+    size = maze.width * maze.height;
+    
     c.drawImage(maze,0,0);
-
-    pixels2Console();
-    c.scale(zoom,zoom);         // cannot read pixels if scale before getImageData
-    c.drawImage(maze,0,0);      // so drawImage twice before and after scale
+    
+    pixels2Array();
+    array2Console();
+    
+    c.scale(zoom,zoom);                 // Cannot read pixels if scale before getImageData
+    c.drawImage(maze,0,0);              // Therefore drawImage twice before and after scale
 };
+
+function pixels2Array(){
+    var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
+    for (var i=0; i < imageData.length/4; i++) {
+        array[i] = imageData[i*4];   // Red Pixels Only as White is RGB 255255255
+    }
+}
+
+function array2Console(){
+    var line = "";
+    for (var i=0; i < size; i++) {
+        line += array[i];
+        if (i % 10 == 9)  
+        {   console.log(line);
+            line = "";
+        }
+    }
+}
 
 function pixels2Console(){
     var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
     var line = "";
-    for (var i=0; i < imageData.length/4; i++) {
-        line += imageData[i*4];     // Red Pixels Only as White is RGB 255255255
+    for (var i=0; i < size; i++) {
+        line += imageData[i*4];         // Red Pixels Only as White is RGB 255255255
         if (i % 10 == 9)  
         {
             console.log(line);
@@ -29,5 +53,4 @@ function pixels2Console(){
         }
     }
 }
-
 </script>
