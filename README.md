@@ -5,12 +5,15 @@ Investigation in to Maze solving in JS
 
 index.html loads tiny.png 10x10 pixel maze  
 
+canvas set to image size    
 zoom image to fit window height   
 getImageData doesn't work after scale hence draw before and after scale    
 
 getImageData produces a RGBA array  
 black is 0,0,0,0 and white is 255,255,255,255   
 RGBA are the same so only Red is read and length / 4 and i*4   
+
+pixels2Console() = pixels2Array() & array2Console()     
 
 References
 -
