@@ -16,6 +16,8 @@ RGBA means length / 4 and i*4
 
 pixels2Console() = pixels2Array() & array2Console()   
 
+pixels2Array creates a simplified (getImageData) array, may be redundant    
+
 References
 -
 
