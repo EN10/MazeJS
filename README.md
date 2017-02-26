@@ -10,10 +10,11 @@ zoom image to fit window height
 getImageData doesn't work after scale hence draw before and after scale    
 
 getImageData produces a RGBA array  
-black is 0,0,0,0 and white is 255,255,255,255   
-RGBA are the same so only Red is read and length / 4 and i*4   
+black is 0,0,0,255 and white is 255,255,255,255   
+RGB are the same so only Red is read    
+RGBA means length / 4 and i*4   
 
-pixels2Console() = pixels2Array() & array2Console()     
+pixels2Console() = pixels2Array() & array2Console()   
 
 References
 -

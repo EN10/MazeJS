@@ -53,4 +53,11 @@ function pixels2Console(){
         }
     }
 }
+
+function rgba2Console(){
+    var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
+    for (var i=0; i < imageData.length; i++) {
+        console.log(imageData[i]);
+    }
+}
 </script>
