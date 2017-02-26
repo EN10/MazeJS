@@ -26,7 +26,7 @@ maze.onload = function() {              // Needed to load PNG
 function pixels2Array(){
     var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
     for (var i=0; i < imageData.length/4; i++) {
-        array[i] = imageData[i*4];   // Red Pixels Only as White is RGB 255255255
+        array[i] = imageData[i*4];      // Red Pixels Only as White is RGB 255255255
     }
 }
 
