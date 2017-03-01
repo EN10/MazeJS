@@ -2,11 +2,10 @@
 <script>
 var canvas = document.getElementById('c');
 var c = canvas.getContext('2d');
-
 var maze = new Image();
 maze.src = "tiny.png";
 
-maze.onload = function() {              // Needed to load PNG
+maze.onload = function() {              // Waits for PNG file to load
     c.drawImage(maze,0,0);
     pixels2Console();
     redraw();                           // c.scale() is blurry
