@@ -1,0 +1,76 @@
+<canvas id='c'></canvas>
+<script>
+var canvas = document.getElementById('c');
+var c = canvas.getContext('2d');
+
+var maze = new Image();
+maze.src = "tiny.png";
+var array = [];
+
+maze.onload = function() {              // Needed to load PNG
+    /*
+    var zoom = window.innerHeight * 0.9 / maze.height;      // 0.9 as browser has a header 
+    canvas.width  = maze.width * zoom;
+    canvas.height  = maze.height * zoom;
+    */
+    
+    c.drawImage(maze,0,0);
+    pixels2Console();
+    redraw();                           // cleans up image
+    
+    /*
+    c.scale(zoom,zoom);                 // Cannot read pixels if scale before getImageData
+    c.drawImage(maze,0,0);              // Therefore drawImage twice before and after scale
+    */
+};
+
+function pixels2Console(){
+    var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
+    var line = "";
+    for (var i=0; i < maze.width * maze.height; i++) {
+        line += imageData[i*4];         // Red Pixels Only as White is RGB 255255255
+        if (i % maze.width == (maze.width-1))  
+        {
+            console.log(line);
+            line = "";
+        }
+    }
+}
+
+function redraw(){
+    var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
+    var x = 0;    var y = 0;    var w = 10;
+    for (var i=0; i < maze.width * maze.height; i++) {
+        if (imageData[i*4] == 0)  c.fillRect(x,y,w,w);
+        if (i % maze.width == (maze.width-1))  
+        {   x = 0;  y += w; }
+        else
+        {   x += w;    }
+    }
+}
+
+function pixels2Array(){
+    var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
+    for (var i=0; i < imageData.length/4; i++) {
+        array[i] = imageData[i*4];      // Red Pixels Only as White is RGB 255255255
+    }
+}
+
+function array2Console(){
+    var line = "";
+    for (var i=0; i < maze.width * maze.height; i++) {
+        line += array[i];
+        if (i % maze.width == (maze.width-1))  
+        {   console.log(line);
+            line = "";
+        }
+    }
+}
+
+function rgba2Console(){
+    var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
+    for (var i=0; i < imageData.length; i++) {
+        console.log(imageData[i]);
+    }
+}
+</script>
