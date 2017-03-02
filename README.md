@@ -5,16 +5,12 @@ index.html
 
 index.html loads tiny.png 10x10 pixel maze  
 
-pixels2Console()     
 getImageData produces a RGBA array  
 black is 0,0,0,255 and white is 255,255,255,255   
-RGB are the same so only Red is read    
+R = G = B so only Red is read    
 RGBA means length / 4 and i*4   
-
-redraw()  
-similar to pixels2Console() except fillRect() in place of console.log().  
 if 0 i.e. black pixel found then use fillRect() 
-
+mod (%) used to go to next row  
 
 debug.html
 -

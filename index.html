@@ -1,38 +1,23 @@
 <canvas id='c'></canvas>
 <script>
-var canvas = document.getElementById('c');
-var c = canvas.getContext('2d');
+var c = document.getElementById('c').getContext('2d');
 var maze = new Image();
 maze.src = "tiny.png";
 
-maze.onload = function() {              // Waits for PNG file to load
+maze.onload = function() {                      // Waits for PNG file to load
     c.drawImage(maze,0,0);
-    pixels2Console();
-    redraw();                           // c.scale() is blurry
-};
-
-function pixels2Console(){
     var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
-    var line = "";
+    var x = 0;    var y = 0;    var w = 10;     var line = "";
     for (var i=0; i < maze.width * maze.height; i++) {
-        line += imageData[i*4];         // Red Pixels Only as White is RGB 255255255
-        if (i % maze.width == (maze.width-1))  
-        {
+        if (imageData[i*4] == 0)  c.fillRect(x,y,w,w);
+        line += imageData[i*4];                 // Red Pixels Only as White is RGB 255255255255
+        if (i % maze.width == (maze.width-1))   // New Row after every width
+        {   x = 0;  y += w; 
             console.log(line);
             line = "";
         }
-    }
-}
-
-function redraw(){
-    var imageData = c.getImageData(0, 0, maze.width, maze.height).data;
-    var x = 0;    var y = 0;    var w = 10;
-    for (var i=0; i < maze.width * maze.height; i++) {
-        if (imageData[i*4] == 0)  c.fillRect(x,y,w,w);
-        if (i % maze.width == (maze.width-1))  
-        {   x = 0;  y += w; }
         else
         {   x += w;    }
     }
-}
+};
 </script>
